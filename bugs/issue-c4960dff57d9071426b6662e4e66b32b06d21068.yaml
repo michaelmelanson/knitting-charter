@@ -5,7 +5,7 @@ type: :feature
 component: knitting
 release: Go-live
 reporter: Michael Melanson <michael@codeshack.ca>
-status: :unstarted
+status: :in_progress
 disposition: 
 creation_time: 2010-07-13 01:00:17.353396 Z
 references: []
@@ -24,3 +24,7 @@ log_events:
   - Michael Melanson <michael@codeshack.ca>
   - commented
   - It should change the hash to Base64-encoded knitting instructions. On load, it should decode them.
+- - 2010-07-13 02:35:49.030229 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - changed status from unstarted to in_progress
+  - ""
