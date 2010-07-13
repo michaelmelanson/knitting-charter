@@ -5,8 +5,8 @@ type: :task
 component: knitting
 release: Go-live
 reporter: Michael Melanson <michael@codeshack.ca>
-status: :in_progress
-disposition: 
+status: :closed
+disposition: :fixed
 creation_time: 2010-07-13 01:03:47.926797 Z
 references: []
 
@@ -20,3 +20,7 @@ log_events:
   - Michael Melanson <michael@codeshack.ca>
   - changed status from unstarted to in_progress
   - Started work.
+- - 2010-07-13 02:33:50.446298 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - closed with disposition fixed
+  - Improved the design. It definitely needs more work, but it'll do for now.
