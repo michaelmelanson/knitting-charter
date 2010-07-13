@@ -7,12 +7,12 @@
     
     
     :javascript
-      $(function() {
-        $(".instructions").keyup(function() {
-          $.getJSON("/chart.json", { instructions: $(".instructions").attr('value') }, function(data) {
+      update_chart = function(instructions) {
+          $.getJSON("/chart.json", { instructions: instructions }, function(data) {
+            var chart = data.chart;
             var html = "<table>";
-            var index = data.length + 1;
-            data.map(function(row) {
+            var index = chart.length + 1;
+            chart.map(function(row) {
               index -= 1;
               html += '<tr>';
 
@@ -38,9 +38,21 @@
             
             $('#chart').empty();
             $('#chart').append(html);
+
+            window.location = "#" + data.hashtag;
           });
-          
-          return false;
+      };
+
+      $(function() {
+        if (window.location.hash.length > 1) {
+            $.getJSON("/chart/load.json", { encoded: window.location.hash }, function(data) {
+              $(".instructions").attr('value', data.instructions);
+              update_chart(data.instructions);
+            });
+        }
+
+        $(".instructions").keyup(function() {
+          update_chart($('.instructions').attr('value'));
         });
       });
       

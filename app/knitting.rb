@@ -1,5 +1,6 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'chart'))
 require 'json'
+require 'base64'
 
 class KnittingApp < Sinatra::Base
   set :reload, true
@@ -16,6 +17,14 @@ class KnittingApp < Sinatra::Base
   
   get '/chart.json' do
     instructions = params[:instructions]
-    Chart.from_instructions(instructions).to_text.to_json
+    hashtag = Base64.encode64 instructions
+
+    { :chart => Chart.from_instructions(instructions).to_text,
+      :hashtag => hashtag.strip }.to_json
+  end
+
+  get '/chart/load.json' do
+    encoded = params[:encoded]
+    { :instructions => Base64.decode64(encoded) }.to_json
   end
 end
