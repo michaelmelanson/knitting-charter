@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Add a way to import a chart
+desc: This needs investigation. What formats should it accept? CSV? Excel? Text grid?
+type: :feature
+component: knitting
+release: Backlog
+reporter: Michael Melanson <michael@codeshack.ca>
+status: :unstarted
+disposition: 
+creation_time: 2010-07-13 03:49:26.485047 Z
+references: []
+
+id: 16b83d020b09cf927fa9cf45f2782a2db411ca66
+log_events: 
+- - 2010-07-13 03:49:27.780852 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - created
+  - ""
