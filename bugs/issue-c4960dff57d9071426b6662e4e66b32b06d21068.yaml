@@ -5,8 +5,8 @@ type: :feature
 component: knitting
 release: Go-live
 reporter: Michael Melanson <michael@codeshack.ca>
-status: :in_progress
-disposition: 
+status: :closed
+disposition: :fixed
 creation_time: 2010-07-13 01:00:17.353396 Z
 references: []
 
@@ -28,3 +28,7 @@ log_events:
   - Michael Melanson <michael@codeshack.ca>
   - changed status from unstarted to in_progress
   - ""
+- - 2010-07-13 02:58:36.281297 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - closed with disposition fixed
+  - Added hashtag saving/loading, so URLs encode the knitting pattern.
