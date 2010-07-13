@@ -3,7 +3,7 @@ title: Add 'undo' button
 desc: ""
 type: :feature
 component: knitting
-release: Go-live
+release: Backlog
 reporter: Michael Melanson <michael@codeshack.ca>
 status: :unstarted
 disposition: 
@@ -16,3 +16,7 @@ log_events:
   - Michael Melanson <michael@codeshack.ca>
   - created
   - ""
+- - 2010-07-13 03:23:52.771482 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - assigned to release Backlog from Go-live
+  - Moved to backlog. People can use the undo/redo in their browsers.

@@ -3,7 +3,7 @@ title: Add 'reset' button
 desc: ""
 type: :feature
 component: knitting
-release: Go-live
+release: Backlog
 reporter: Michael Melanson <michael@codeshack.ca>
 status: :unstarted
 disposition: 
@@ -16,3 +16,7 @@ log_events:
   - Michael Melanson <michael@codeshack.ca>
   - created
   - ""
+- - 2010-07-13 03:24:25.771619 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - assigned to release Backlog from Go-live
+  - People can just clear the field.
