@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Add option for flat vs. circular knitting
+desc: ""
+type: :feature
+component: knitting
+release: Backlog
+reporter: Michael Melanson <michael@codeshack.ca>
+status: :unstarted
+disposition: 
+creation_time: 2010-07-13 03:37:05.683956 Z
+references: []
+
+id: a7035bac3ae17a9fbfce2d915e3a14c5913a8b8d
+log_events: 
+- - 2010-07-13 03:37:06.811740 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - created
+  - ""
