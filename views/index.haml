@@ -1,0 +1,53 @@
+!!! 5
+%html
+  %head
+    %title Knitting charter
+    %link{ :rel => "stylesheet", :href => "/style.css"}
+    %script{ :type => "text/javascript", :src => "/jquery.js" }
+    
+    
+    :javascript
+      $(function() {
+        $(".instructions").keyup(function() {
+          $.getJSON("/chart.json", { instructions: $(".instructions").attr('value') }, function(data) {
+            var html = "<table>";
+            var index = data.length + 1;
+            data.map(function(row) {
+              index -= 1;
+              html += '<tr>';
+
+              html += '<td class="number">';
+              if (index % 2 == 0) {
+                html += index
+              }
+              html += '</td>';
+
+              for(i = 0; i < row.length; ++i) {                
+                html += '<td class="stitch">'+row[i]+'</td>';
+              }
+              
+              html += '<td class="number">';
+              if (index % 2 == 1) {
+                html += index
+              }
+              html += '</td>';
+              
+              html += '</tr>';
+            });
+            html += '</table>';
+            
+            $('#chart').empty();
+            $('#chart').append(html);
+          });
+          
+          return false;
+        });
+      });
+      
+  %body
+    %h1 Knitting charter
+    
+    #chart
+    #instructions
+      %form
+        %textarea.instructions{:id => :instructions, :rows => 7, :cols => 50}
