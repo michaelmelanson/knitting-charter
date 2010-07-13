@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Add 'undo' button
+desc: ""
+type: :feature
+component: knitting
+release: Go-live
+reporter: Michael Melanson <michael@codeshack.ca>
+status: :unstarted
+disposition: 
+creation_time: 2010-07-13 03:09:41.829221 Z
+references: []
+
+id: 42e7813982ddca76aeae4b1bbb8e1952dbd4dc1b
+log_events: 
+- - 2010-07-13 03:09:42.972992 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - created
+  - ""

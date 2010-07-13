@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Add legend with drag&droppable symbols to change chart
+desc: ""
+type: :feature
+component: knitting
+release: Go-live
+reporter: Michael Melanson <michael@codeshack.ca>
+status: :unstarted
+disposition: 
+creation_time: 2010-07-13 03:09:19.605321 Z
+references: []
+
+id: 5976acc0975803ca9e1cdaf889d372236463171a
+log_events: 
+- - 2010-07-13 03:09:20.709018 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - created
+  - ""
