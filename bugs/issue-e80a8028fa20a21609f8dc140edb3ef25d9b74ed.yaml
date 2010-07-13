@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Add support for lace patterns
+desc: Talk to Carolyn about how lace instructions are written.
+type: :feature
+component: knitting
+release: Backlog
+reporter: Michael Melanson <michael@codeshack.ca>
+status: :unstarted
+disposition: 
+creation_time: 2010-07-13 01:08:51.497874 Z
+references: []
+
+id: e80a8028fa20a21609f8dc140edb3ef25d9b74ed
+log_events: 
+- - 2010-07-13 01:08:52.617613 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - created
+  - ""
