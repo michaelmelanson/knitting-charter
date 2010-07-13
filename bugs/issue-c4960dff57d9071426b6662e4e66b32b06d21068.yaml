@@ -1,0 +1,26 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Add a way to link to a particular pattern
+desc: ""
+type: :feature
+component: knitting
+release: Go-live
+reporter: Michael Melanson <michael@codeshack.ca>
+status: :unstarted
+disposition: 
+creation_time: 2010-07-13 01:00:17.353396 Z
+references: []
+
+id: c4960dff57d9071426b6662e4e66b32b06d21068
+log_events: 
+- - 2010-07-13 01:00:22.225087 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - created
+  - ""
+- - 2010-07-13 01:02:43.926352 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - assigned to release Go-live from unassigned
+  - ""
+- - 2010-07-13 01:07:01.425699 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - commented
+  - It should change the hash to Base64-encoded knitting instructions. On load, it should decode them.

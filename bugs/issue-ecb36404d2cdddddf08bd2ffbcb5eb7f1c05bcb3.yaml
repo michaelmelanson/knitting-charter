@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Decide on a proper name
+desc: "\"Knitting charter\" sucks. Change that."
+type: :task
+component: knitting
+release: Go-live
+reporter: Michael Melanson <michael@codeshack.ca>
+status: :unstarted
+disposition: 
+creation_time: 2010-07-13 01:04:51.238431 Z
+references: []
+
+id: ecb36404d2cdddddf08bd2ffbcb5eb7f1c05bcb3
+log_events: 
+- - 2010-07-13 01:04:52.302560 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - created
+  - ""

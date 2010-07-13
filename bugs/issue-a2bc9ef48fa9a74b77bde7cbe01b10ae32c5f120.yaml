@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Design UI
+desc: Sketch it out on paper, then implement.
+type: :task
+component: knitting
+release: Go-live
+reporter: Michael Melanson <michael@codeshack.ca>
+status: :unstarted
+disposition: 
+creation_time: 2010-07-13 01:03:47.926797 Z
+references: []
+
+id: a2bc9ef48fa9a74b77bde7cbe01b10ae32c5f120
+log_events: 
+- - 2010-07-13 01:03:51.838513 Z
+  - Michael Melanson <michael@codeshack.ca>
+  - created
+  - ""
