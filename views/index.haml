@@ -47,7 +47,20 @@
   %body
     %h1 Knitting charter
     
-    #chart
-    #instructions
-      %form
-        %textarea.instructions{:id => :instructions, :rows => 7, :cols => 50}
+    %table
+      %tr#instruction-row
+        %td.label
+          enter the knitting 
+          %span.coloured instructions
+          here:
+        %td#instructions.field
+          %form
+            %textarea.instructions{:id => :instructions}
+
+    %table
+      %tr#chart-row
+        %td.label
+          your
+          %span.coloured chart
+          appears here:
+        %td#chart.field

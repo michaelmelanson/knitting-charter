@@ -1,20 +1,51 @@
-#chart
-  display: inline
-  width: 100px
-  height: 100px
+@import reset.sass
++global-reset
 
+body, textarea
+  font-family: serif
+  font-size: 14pt
+
+body
+  margin: 3em
+
+h1
+  font-size: 21pt
+  margin-bottom: 2em
+
+.label
+  width: 160px
+  vertical-align: top
+
+#instructions
+  textarea
+    width: 600px
+    height: 150px
+
+#chart
   table, tr, td
     border-collapse: collapse
-    
-  td.stitch
-    border: 1px solid black
-    width: 30px
-    height: 25px
-    
-    text-align: center
-    
-    font-weight: bold
-    
-    dot
-      background-color: black
-      
+
+  table
+    td.stitch, td.number
+      width: 30px
+      height: 30px
+      text-align: center
+
+    td.stitch
+      font-size: 18pt
+      border: 1px solid black
+
+    td.number
+      color: #888
+
+#instruction-row
+  .coloured
+    color: #800
+
+#chart-row
+  .coloured
+    color: #008
+
+
+#instructions
+  padding-bottom: 2em
