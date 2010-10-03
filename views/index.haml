@@ -15,6 +15,16 @@
       }
 
     :javascript
+      var mixpanelInProgress = false;
+      kickMixpanel = function() {
+          if (!mixpanelInProgress) {
+              mixpanelInProgress = true;
+              window.setTimeout(function() {
+                  mixpanelInProgress = false;
+                  mpmetrics.track('editing', {});
+              }, 10000);
+          }
+      };
       update_chart = function(instructions) {
           $.getJSON("/chart.json", { instructions: instructions }, function(data) {
             var chart = data.chart;
@@ -48,8 +58,8 @@
             $('#chart').append(html);
 
             window.location = "#" + data.hashtag;
+            kickMixpanel();
           });
-          mpmetrics.track('change', {'instructions': instructions});
       };
 
       $(function() {
