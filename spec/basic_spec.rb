@@ -76,6 +76,7 @@ end
 describe Chart, "#from_instructions" do
   it "should produce the correct knitting charts" do
     EXAMPLES.invert.each do |instructions, expected_chart|
+      instructions = ["extra text"] + instructions + ["more text"]
       c = Chart.from_instructions instructions
       c.to_text.should == expected_chart
     end

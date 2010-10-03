@@ -31,12 +31,13 @@ class Chart
   
   def to_text
     instructions = self.instruction_rows.collect do |row|
-      row.split(':')[-1].split(',').collect do |direction|
+      matches = row.scan(/([KP]\d+)/).collect {|x| x[0]}
+      matches.collect do |direction|
         InstructionGroup.from_direction direction.strip
       end
     end
     
-    instructions.collect! {|row| row.flatten}
+    instructions.delete_if {|row| row.empty? }
     
     instructions.each_index do |index|
       if index.even?
