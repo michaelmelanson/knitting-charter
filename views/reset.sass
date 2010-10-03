@@ -80,7 +80,7 @@
  
 =reset-body
   :line-height 1em
-  :color = #000
+  :color black
   :background #fff
  
 =reset-list-style
@@ -121,7 +121,7 @@
       +reset-display(".registered-only")
     body.unregistered
       +reset-display(".unregistered-only")
-=reset-display(!selector = "", !important = false)
+=reset-display($selector: "", $important: false)
   #{append_selector(elements_of_type("inline"), !selector)}
     @if !important
       display: inline !important
