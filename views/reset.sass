@@ -122,12 +122,12 @@
     body.unregistered
       +reset-display(".unregistered-only")
 =reset-display($selector: "", $important: false)
-  #{append_selector(elements_of_type("inline"), !selector)}
+  #{append_selector(elements_of_type("inline"), $selector)}
     @if !important
       display: inline !important
     @else
       display: inline
-  #{append_selector(elements_of_type("block"), !selector)}
+  #{append_selector(elements_of_type("block"), $selector)}
     @if !important
       display: block !important
     @else
