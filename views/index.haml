@@ -3,6 +3,7 @@
   %head
     %title Knitting charter
     %script{ :type => "text/javascript", :src => "/jquery.js" }
+    %script{ :type => "text/javascript", :src => "/jquery.ba-bbq.min.js" }
     
     :javascript
       update_chart = function(instructions) {
@@ -42,12 +43,14 @@
       };
 
       $(function() {
-        if (window.location.hash.length > 1) {
-            $.getJSON("/chart/load.json", { encoded: window.location.hash }, function(data) {
-              $(".instructions").attr('value', data.instructions);
-              update_chart(data.instructions);
-            });
-        }
+        $(window).bind('hashchange', function(event) {
+          $.getJSON("/chart/load.json", { encoded: event.fragment }, function(data) {
+            $(".instructions").attr('value', data.instructions);
+            update_chart(data.instructions);
+          });
+        });
+
+        $(window).trigger('hashchange');
 
         $(".instructions").keyup(function() {
           update_chart($('.instructions').attr('value'));
@@ -56,7 +59,11 @@
     %link{ :rel => "stylesheet", :href => "/style.css"}
       
   %body
-    %h1 Knitting charter
+    %h1
+      Knitting charter
+      %small
+        First time? Check out the
+        = [(link_to '#SnVzdCB0eXBlIHlvdXIgaW5zdHJ1Y3Rpb25zIGFzIHlvdSBub3JtYWxseSB3b3VsZCwgbGlrZSB0aGlzLCB3aXRoIG9uZSByb3cgcGVyIGxpbmU6CgpLMTQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBZb3UgY2FuIGFkZCBhbnkgbm90ZXMgdGhhdCB5b3Ugd2FudApQMSwgSzEsIFAzLCBLMSwgUDIsIEs1LCBQMQpLMywgUDEsIEs0LCBQMSwgSzMsIFAxLCBLMQpQMSwgSzEsIFAzLCBLMSwgUDQsIEsxLCBQMwpLMywgUDEsIEs0LCBQNSwgSzEgICAgICAgICAgICAgICBCYXIgYWNyb3NzIHRoZSBIClAxLCBLMSwgUDMsIEsxLCBQNCwgSzEsIFAzCkszLCBQMSwgSzQsIFAxLCBLMywgUDEsIEsxClAxLCBLMSwgUDMsIEsxLCBQMiwgSzUsIFAxICAgVG9wIG9mIHRoZSBJCksxNAo=', 'example pattern'), "."].join
     
     %table
       %tr#instruction-row
