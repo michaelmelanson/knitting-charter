@@ -1,6 +1,8 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'chart'))
 require 'json'
 require 'base64'
+require 'haml'
+require 'sass'
 
 class KnittingApp < Sinatra::Base
   configure :production do
