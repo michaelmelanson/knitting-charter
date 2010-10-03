@@ -16,8 +16,8 @@ class KnittingApp < Sinatra::Base
   end
   
   get '/chart.json' do
-    instructions = params[:instructions]
-    hashtag = Base64.encode64 instructions
+    instructions = params[:instructions].split(/\n/)
+    hashtag = Base64.encode64 params[:instructions]
 
     { :chart => Chart.from_instructions(instructions).to_text,
       :hashtag => hashtag.strip }.to_json
