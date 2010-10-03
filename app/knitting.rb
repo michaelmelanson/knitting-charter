@@ -26,6 +26,12 @@ class KnittingApp < Sinatra::Base
       require 'newrelic_rpm'
   end
 
+  helpers do
+    def link_to(url, text)
+      "<a href=\"#{url}\">#{text}</a>"
+    end
+  end
+
   set :reload, true
   set :public, "public"
 
