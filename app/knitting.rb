@@ -30,7 +30,7 @@ class KnittingApp < Sinatra::Base
   set :public, "public"
 
   get '/' do
-    cache_control :public, :max_age => 6.hours
+    cache_control :public, :max_age => 1.days
     haml :index
   end
 
