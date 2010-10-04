@@ -67,11 +67,14 @@ class KnittingApp < Sinatra::Base
   end
 
   get '/shorten.json' do
-    hashtag = URI.escape params[:hashtag], '='
+    hashtag = params[:hashtag].gsub(/[\n]/, '')
+    escaped = URI.escape hashtag, '='
     authorize = UrlShortener::Authorize.new 'michaelmelanson', 'R_680c1476bc6717774d120f45d908f5d8'
 
+    url = 'http://knitting.heroku.com/#hashtag=' + escaped
+
     client = UrlShortener::Client.new authorize
-    shorten = client.shorten('http://knitting.heroku.com/#hashtag=' + hashtag)
+    shorten = client.shorten(url)
 
     cache_control :public, :max_age => 0
     { :url => shorten.urls }.to_json
