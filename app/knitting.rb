@@ -65,8 +65,9 @@ class KnittingApp < Sinatra::Base
 
   get '/chart/load.json' do
     encoded = params[:encoded]
+    instructions = Base64.decode64(encoded) rescue ""
 
     cache_control :public, :max_age => 1.year
-    { :instructions => Base64.decode64(encoded) }.to_json
+    { :instructions => instructions }.to_json
   end
 end
