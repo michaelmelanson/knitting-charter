@@ -76,7 +76,7 @@ class KnittingApp < Sinatra::Base
     client = UrlShortener::Client.new authorize
     shorten = client.shorten(url)
 
-    cache_control :public, :max_age => 0
+    cache_control :public, :max_age => 1.year
     { :url => shorten.urls }.to_json
   end
 
