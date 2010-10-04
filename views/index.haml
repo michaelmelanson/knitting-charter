@@ -15,17 +15,10 @@
       }
 
     :javascript
-      var mixpanelInProgress = false;
-      kickMixpanel = function() {
-          if (!mixpanelInProgress) {
-              mixpanelInProgress = true;
-              window.setTimeout(function() {
-                  mixpanelInProgress = false;
-                  mpmetrics.track('editing', {});
-              }, 10000);
-          }
-      };
-      update_chart = function(instructions) {
+
+      update_chart = function(instructions, update_state) {
+          console.log("update_chart");
+
           $.getJSON("/chart.json", { instructions: instructions }, function(data) {
             var chart = data.chart;
             var html = "<table>";
@@ -57,24 +50,39 @@
             $('#chart').empty();
             $('#chart').append(html);
 
-            window.location = "#" + data.hashtag;
-            kickMixpanel();
+            if (update_state) {
+              $.bbq.pushState({'hashtag': data.hashtag});
+            }
           });
       };
 
       $(function() {
         mpmetrics.track('load', {});
+        var instruction_changes = 0;
+        
         $(window).bind('hashchange', function(event) {
-          $.getJSON("/chart/load.json", { encoded: event.fragment }, function(data) {
-            $(".instructions").attr('value', data.instructions);
-            update_chart(data.instructions);
-          });
+            var change_id = instruction_changes;
+            $.getJSON("/chart/load.json", { encoded: $.bbq.getState('hashtag') }, function(data) {
+                if (instruction_changes == change_id) {
+                    $(".instructions").attr('value', data.instructions);
+                    update_chart(data.instructions, false);
+                }
+            });
         });
 
         $(window).trigger('hashchange');
 
         $(".instructions").keyup(function() {
-          update_chart($('.instructions').attr('value'));
+            console.log('keyup');
+
+            instruction_changes = instruction_changes + 1;
+            var change_id = instruction_changes;
+            window.setTimeout(function() {
+                if (change_id == instruction_changes) {
+                    update_chart($('.instructions').attr('value'), true);
+                    mpmetrics.track('chart', {});
+                }
+            }, 500);
         });
       });
     %link{ :rel => "stylesheet", :href => "/style.css"}
@@ -84,7 +92,7 @@
       Knitting charter
       %small
         First time? Check out the
-        = [(link_to '#SnVzdCB0eXBlIHlvdXIgaW5zdHJ1Y3Rpb25zIGFzIHlvdSBub3JtYWxseSB3b3VsZCwgbGlrZSB0aGlzLCB3aXRoIG9uZSByb3cgcGVyIGxpbmU6CgpLMTQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBZb3UgY2FuIGFkZCBhbnkgbm90ZXMgdGhhdCB5b3Ugd2FudApQMSwgSzEsIFAzLCBLMSwgUDIsIEs1LCBQMQpLMywgUDEsIEs0LCBQMSwgSzMsIFAxLCBLMQpQMSwgSzEsIFAzLCBLMSwgUDQsIEsxLCBQMwpLMywgUDEsIEs0LCBQNSwgSzEgICAgICAgICAgICAgICBCYXIgYWNyb3NzIHRoZSBIClAxLCBLMSwgUDMsIEsxLCBQNCwgSzEsIFAzCkszLCBQMSwgSzQsIFAxLCBLMywgUDEsIEsxClAxLCBLMSwgUDMsIEsxLCBQMiwgSzUsIFAxICAgVG9wIG9mIHRoZSBJCksxNAo=', 'example pattern'), "."].join
+        = [(link_to '#hashtag=SnVzdCB0eXBlIHlvdXIgaW5zdHJ1Y3Rpb25zIGFzIHlvdSBub3JtYWxseSB3%0Ab3VsZCwgbGlrZSB0aGlzLCB3aXRoIG9uZSByb3cgcGVyIGxpbmU6CgpLMTQg%0AICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBZb3UgY2Fu%0AIGFkZCBhbnkgbm90ZXMgdGhhdCB5b3Ugd2FudApQMSwgSzEsIFAzLCBLMSwg%0AUDIsIEs1LCBQMQpLMywgUDEsIEs0LCBQMSwgSzMsIFAxLCBLMQpQMSwgSzEs%0AIFAzLCBLMSwgUDQsIEsxLCBQMwpLMywgUDEsIEs0LCBQNSwgSzEgICAgICAg%0AICAgICAgICBCYXIgYWNyb3NzIHRoZSBIClAxLCBLMSwgUDMsIEsxLCBQNCwg%0ASzEsIFAzCkszLCBQMSwgSzQsIFAxLCBLMywgUDEsIEsxClAxLCBLMSwgUDMs%0AIEsxLCBQMiwgSzUsIFAxICAgVG9wIG9mIHRoZSBJCksxNAo%3D', 'example pattern'), "."].join
     
     %table
       %tr#instruction-row
