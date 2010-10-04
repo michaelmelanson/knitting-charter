@@ -3,6 +3,9 @@ require 'json'
 require 'base64'
 require 'haml'
 require 'sass'
+require 'url_shortener'
+require 'uri'
+
 
 class Fixnum
   def minutes
@@ -61,6 +64,17 @@ class KnittingApp < Sinatra::Base
     cache_control :public, :max_age => 1.year
     { :chart => chart,
       :hashtag => hashtag.strip }.to_json
+  end
+
+  get '/shorten.json' do
+    hashtag = URI.escape params[:hashtag], '='
+    authorize = UrlShortener::Authorize.new 'michaelmelanson', 'R_680c1476bc6717774d120f45d908f5d8'
+
+    client = UrlShortener::Client.new authorize
+    shorten = client.shorten('http://knitting.heroku.com/#hashtag=' + hashtag)
+
+    cache_control :public, :max_age => 0
+    { :url => shorten.urls }.to_json
   end
 
   get '/chart/load.json' do

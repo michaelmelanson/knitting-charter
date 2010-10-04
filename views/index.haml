@@ -68,13 +68,14 @@
                     update_chart(data.instructions, false);
                 }
             });
+
+            $('#share-target').hide('blind');
+            $('#share-link').show('fade');
         });
 
         $(window).trigger('hashchange');
 
         $(".instructions").keyup(function() {
-            console.log('keyup');
-
             instruction_changes = instruction_changes + 1;
             var change_id = instruction_changes;
             window.setTimeout(function() {
@@ -84,6 +85,18 @@
                 }
             }, 500);
         });
+
+        $("#share-link").click(function() {
+            $.getJSON("/shorten.json", { hashtag: $.bbq.getState('hashtag') }, function(data) {
+                console.log("got shortened url: " + data.url);
+                $('#share-target .url').text(data.url);
+                $('#share-target .url').attr('href', data.url);
+
+                $('#share-target').show('blind');
+                $('#share-link').hide('fade');
+            });
+        });
+
       });
     %link{ :rel => "stylesheet", :href => "/style.css"}
       
@@ -111,6 +124,19 @@
           %span.coloured chart
           appears here:
         %td#chart.field
+
+    %table#share-row
+      %tr
+        %td.label{ :rowspan => 2 }<
+          share the
+          %span.coloured love
+          = ":"
+
+        %td#share-box
+          %a#share-link{ :href => "javascript:void(0);" } Get short URL
+          #share-target
+            Copy and paste this to share this pattern:
+            %a.url
 
     #footer
       %p

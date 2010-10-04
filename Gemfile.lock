@@ -1,9 +1,13 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    crack (0.1.8)
     daemons (1.1.0)
     eventmachine (0.12.10)
     haml (3.0.21)
+    hashie (0.1.4)
+    httparty (0.4.5)
+      crack (>= 0.1.1)
     rack (1.2.1)
     sinatra (1.0)
       rack (>= 1.0)
@@ -11,6 +15,9 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
+    url_shortener (0.0.6)
+      hashie (= 0.1.4)
+      httparty (= 0.4.5)
 
 PLATFORMS
   ruby
@@ -19,3 +26,4 @@ DEPENDENCIES
   haml
   sinatra
   thin
+  url_shortener
