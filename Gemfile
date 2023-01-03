@@ -1,9 +1,11 @@
-source :gemcutter
 
-gem "sinatra"
-gem "haml"
-gem "url_shortener"
+source "https://rubygems.org"
+
+gem 'haml'
+gem 'sass'
+gem 'sinatra'
+gem 'url_shortener'
 
 group :development do
-  gem "thin"
+  gem 'thin'
 end

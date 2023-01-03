@@ -6,17 +6,19 @@ require 'sass'
 require 'url_shortener'
 require 'uri'
 
-
-class Fixnum
+class Integer
   def minutes
     self * 60
   end
+
   def hours
     (self * 60).minutes
   end
+
   def days
     (self * 24).hours
   end
+
   def year
     (self * 365).days
   end
@@ -24,9 +26,7 @@ end
 
 class KnittingApp < Sinatra::Base
   configure :production do
-      ENV['APP_ROOT'] ||= File.dirname(__FILE__)
-      $:.unshift "#{ENV['APP_ROOT']}/vendor/plugins/newrelic_rpm/lib"
-      require 'newrelic_rpm'
+    ENV['APP_ROOT'] ||= File.dirname(__FILE__)
   end
 
   helpers do
@@ -36,38 +36,34 @@ class KnittingApp < Sinatra::Base
   end
 
   set :reload, true
-  set :public, "public"
+  set :root, File.join(File.dirname(__FILE__), '..')
+  set :public, proc { File.join(root, 'public') }
+  set :views, proc { File.join(root, 'views') }
 
   get '/' do
-    cache_control :public, :max_age => 1.days
+    cache_control :public, max_age: 1.days
     haml :index
   end
 
-  get '/style.css' do
-    cache_control :public, :max_age => 6.hours
-    content_type 'text/css', :charset => 'utf-8'
-    sass :style
-  end
-  
   get '/chart.json' do
     instructions = params[:instructions].strip.split(/[\r\n]+/)
     hashtag = Base64.encode64 params[:instructions]
     puts "instructions: #{instructions}"
-    if instructions.empty?
-      chart = [""]
-    else
-      chart = Chart.from_instructions(instructions).to_text
-    end
+    chart = if instructions.empty?
+              ['']
+            else
+              Chart.from_instructions(instructions).to_text
+            end
 
     puts "chart: #{chart}"
 
-    cache_control :public, :max_age => 1.year
-    { :chart => chart,
-      :hashtag => hashtag.strip }.to_json
+    cache_control :public, max_age: 1.year
+    { chart: chart,
+      hashtag: hashtag.strip }.to_json
   end
 
   get '/shorten.json' do
-    hashtag = params[:hashtag].gsub(/[\n]/, '')
+    hashtag = params[:hashtag].gsub(/\n/, '')
     escaped = URI.escape hashtag, '='
     authorize = UrlShortener::Authorize.new 'michaelmelanson', 'R_680c1476bc6717774d120f45d908f5d8'
 
@@ -76,15 +72,19 @@ class KnittingApp < Sinatra::Base
     client = UrlShortener::Client.new authorize
     shorten = client.shorten(url)
 
-    cache_control :public, :max_age => 1.year
-    { :url => shorten.urls }.to_json
+    cache_control :public, max_age: 1.year
+    { url: shorten.urls }.to_json
   end
 
   get '/chart/load.json' do
     encoded = params[:encoded]
-    instructions = Base64.decode64(encoded) rescue ""
+    instructions = begin
+      Base64.decode64(encoded)
+    rescue StandardError
+      ''
+    end
 
-    cache_control :public, :max_age => 1.year
-    { :instructions => instructions }.to_json
+    cache_control :public, max_age: 1.year
+    { instructions: instructions }.to_json
   end
 end

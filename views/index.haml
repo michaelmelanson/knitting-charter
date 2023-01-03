@@ -4,16 +4,7 @@
     %title Knitting charter
     %script{ :type => "text/javascript", :src => "/jquery.js" }
     %script{ :type => "text/javascript", :src => "/jquery.ba-bbq.min.js" }
-    %script{ :type => "text/javascript", :src => "http://api.mixpanel.com/site_media/js/api/mixpanel.js" }
     
-    :javascript
-      try {
-          var mpmetrics = new MixpanelLib("aa074257368fc99a1028902d89674294");
-      } catch(err) {
-          null_fn = function () {};
-          var mpmetrics = { track: null_fn, track_funnel: null_fn, register: null_fn, register_once: null_fn };
-      }
-
     :javascript
 
       update_chart = function(instructions, update_state) {
@@ -57,7 +48,6 @@
       };
 
       $(function() {
-        mpmetrics.track('load', {});
         var instruction_changes = 0;
         
         $(window).bind('hashchange', function(event) {
@@ -105,7 +95,7 @@
       Knitting charter
       %small
         First time? Check out the
-        = [(link_to '#hashtag=SnVzdCB0eXBlIHlvdXIgaW5zdHJ1Y3Rpb25zIGFzIHlvdSBub3JtYWxseSB3%0Ab3VsZCwgbGlrZSB0aGlzLCB3aXRoIG9uZSByb3cgcGVyIGxpbmU6CgpLMTQg%0AICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBZb3UgY2Fu%0AIGFkZCBhbnkgbm90ZXMgdGhhdCB5b3Ugd2FudApQMSwgSzEsIFAzLCBLMSwg%0AUDIsIEs1LCBQMQpLMywgUDEsIEs0LCBQMSwgSzMsIFAxLCBLMQpQMSwgSzEs%0AIFAzLCBLMSwgUDQsIEsxLCBQMwpLMywgUDEsIEs0LCBQNSwgSzEgICAgICAg%0AICAgICAgICBCYXIgYWNyb3NzIHRoZSBIClAxLCBLMSwgUDMsIEsxLCBQNCwg%0ASzEsIFAzCkszLCBQMSwgSzQsIFAxLCBLMywgUDEsIEsxClAxLCBLMSwgUDMs%0AIEsxLCBQMiwgSzUsIFAxICAgVG9wIG9mIHRoZSBJCksxNAo%3D', 'example pattern'), "."].join
+        %a{:href => '#hashtag=SnVzdCB0eXBlIHlvdXIgaW5zdHJ1Y3Rpb25zIGFzIHlvdSBub3JtYWxseSB3%0Ab3VsZCwgbGlrZSB0aGlzLCB3aXRoIG9uZSByb3cgcGVyIGxpbmU6CgpLMTQg%0AICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBZb3UgY2Fu%0AIGFkZCBhbnkgbm90ZXMgdGhhdCB5b3Ugd2FudApQMSwgSzEsIFAzLCBLMSwg%0AUDIsIEs1LCBQMQpLMywgUDEsIEs0LCBQMSwgSzMsIFAxLCBLMQpQMSwgSzEs%0AIFAzLCBLMSwgUDQsIEsxLCBQMwpLMywgUDEsIEs0LCBQNSwgSzEgICAgICAg%0AICAgICAgICBCYXIgYWNyb3NzIHRoZSBIClAxLCBLMSwgUDMsIEsxLCBQNCwg%0ASzEsIFAzCkszLCBQMSwgSzQsIFAxLCBLMywgUDEsIEsxClAxLCBLMSwgUDMs%0AIEsxLCBQMiwgSzUsIFAxICAgVG9wIG9mIHRoZSBJCksxNAo%3D' } example pattern
     
     %table
       %tr#instruction-row
@@ -140,9 +130,9 @@
 
     #footer
       %p
-        A hobby project by
-        = [(link_to 'mailto:michael@michaelmelanson.net', 'Michael Melanson'), '.'].join
-        Feel free to contact me with suggestions or comments.
+        A hobby project by&nbsp;
+        %a{:href => 'mailto:michael@michaelmelanson.net'}> Michael Melanson
+        \. Feel free to contact me with suggestions or comments.
 
       %p
         Got design chops? Offers to make a design that doesn't suck would be
